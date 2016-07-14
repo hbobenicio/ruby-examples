@@ -1,0 +1,6 @@
+Modules are useful to agregate common functions in a namespace.
+
+They are used in mixins functionality too, so their instance methods
+could also become instance methods on classes that include them.
+
+Modules can have instance methods and "module"s methods. Only instance methods are used in mixins. Only modules methods are used like function namespaces
