@@ -1,0 +1,49 @@
+#!/usr/bin/env ruby
+
+namespace "sigpro" do
+  
+  namespace "tabapoio" do
+
+    desc "Realiza a carga das tabelas de apoio - Periodicidade anual"
+    task :anual do
+      puts "Executando Carga Anual..."
+    end
+
+    desc "Realiza a carga das tabelas de apoio - Periodicidade mensal"
+    task :mensal do
+      puts "Executando Carga Mensal..."
+    end
+
+    desc "Realiza a carga das tabelas de apoio - Periodicidade Diaria"
+    task :diaria do
+      puts "Executando Carga Diaria..."
+    end
+
+    desc "Realiza a carga de todas as tabelas de apoio"
+    task :all => [:anual, :mensal, :diaria]
+  end
+
+  namespace "saldos" do
+
+    desc "Realiza a carga do arquivo STA"
+    task :sta do
+      exercicio, data = ENV['EXERCICIO'], ENV['DATA']
+      puts "Realizando Carga do arquivo do STA de Saldo Orçamento para exercício #{exercicio} - #{data}"
+    end
+
+    desc "Realiza a carga das dotações, limites e reprogramação automática"
+    task :dotacao do
+      puts "Realizando Carga das Dotações"
+    end
+
+    desc "Realiza o processamento das SMO's"
+    task :smo do
+      puts "Realizando Processamento das SMO's"
+    end
+
+    task :all => [:sta, :dotacao, :smo]
+  end
+
+  task :all => ["sigpro:tabapoio:all", "sigpro:saldos:all"]
+end
+
