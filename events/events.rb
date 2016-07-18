@@ -1,26 +1,17 @@
-#!/usr/bin/env
+#!/usr/bin/env ruby
 
-module EventHandler
-  attr_accessor :events_table
+require_relative 'event_module'
+
+class Button
+  include EventModule
   
-  def connect(event, &slot_block)
-    @events_table ||= {}
-    
-    if @events_table[event].nil?
-      @events_table[event] = [slot_block]
-    else
-      @events_table[event] << slot_block
-    end
-  end
-  
-  def emit(event)
-    @events_table[event].each do |slot_block|
-      slot_block.call
-    end
+  def click
+    emit :click
   end
 end
 
-class Foo
-  include EventHandler
+button = Button.new
+button.connect(:click) do
+  puts "Button clicked!"
 end
-
+button.click
