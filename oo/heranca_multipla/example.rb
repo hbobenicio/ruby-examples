@@ -30,11 +30,8 @@ class AnimalAnfibio
   end
 
   def mover
-    if @ambiente == :agua
-      nadar
-    else
-      andar
-    end
+    nadar if @ambiente == :agua
+    andar if @ambiente == :terra
   end
 end
 

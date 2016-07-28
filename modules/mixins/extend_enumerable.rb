@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
 module EnumerableSum
-
   def sum
     total = 0
     each do |value|
